@@ -1,0 +1,27 @@
+{
+    "name": "alimousavi/filoquent",
+    "description": "A powerful Laravel package for filtering Eloquent models using HTTP query parameters.",
+    "type": "library",
+    "homepage": "https://github.com/alimousavidev/filoquent",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ali Mousavi",
+            "email": "hello@alimousavi.dev"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AliMousavi\\Filoquent\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AliMousavi\\Filoquent\\FiloquentServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

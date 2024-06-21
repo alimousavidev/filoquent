@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Filters{{ namespace }};
+
+use AliMousavi\Filoquent\Filters\FilterAbstract;
+use Illuminate\Database\Eloquent\Builder;
+
+/**
+ * Class {{ filter }}
+ *
+ * This class represents a filter for Eloquent models. It extends the FilterAbstract class
+ * from the Filoquent package and provides properties for filterable, searchable, and
+ * orderable fields.
+ *
+ */
+class {{ filter }} extends FilterAbstract
+{
+    /**
+     * @var array
+     *
+     * An array of fields that can be filtered.
+     */
+    protected array $filterables = [
+        // Add your filterable fields here
+    ];
+
+    /**
+     * @var array
+     *
+     * An array of fields that can be searched.
+     */
+    protected array $searchables = [
+        // Add your searchable fields here
+    ];
+
+    /**
+     * @var array
+     *
+     * An array of fields that can be used for ordering.
+     */
+    protected array $orderBy = [
+        // Add your orderable fields here
+    ];
+}
