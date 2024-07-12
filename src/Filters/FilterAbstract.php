@@ -61,7 +61,7 @@ abstract class FilterAbstract implements FilterInterface
     public function getFilters(): array
     {
         return array_filter($this->request->only($this->getFilterables()), function ($filterable) {
-            return ! empty($filterable);
+            return ! is_null($filterable);
         });
     }
 
