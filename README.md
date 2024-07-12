@@ -54,7 +54,7 @@ namespace App\Filters\Blog;
 
 use AliMousavi\Filoquent\Filters\FilterAbstract;
 
-class CategoryFilter extends FilterAbstract
+class PostFilter extends FilterAbstract
 {
 
     /**
@@ -64,8 +64,8 @@ class CategoryFilter extends FilterAbstract
      * They key of array is the field being filtered and the value is the type of the field.
      */
     protected array $filterables = [
-        'title' => 'string',
-        'author' => 'string',
+        'title' => self::TYPE_STRING,
+        'author' => self::TYPE_STRING,
     ];
 
     /**
