@@ -25,12 +25,16 @@ abstract class FilterAbstract implements FilterInterface
         self::TYPE_INTEGER,
         self::TYPE_STRING,
         self::TYPE_BOOLEAN,
+        self::TYPE_FLOAT,
+        self::TYPE_DOUBLE,
     ];
 
     public function apply(Builder $builder): void
     {
+
         $this->builder = $builder;
         $filters = $this->getFilters();
+
         foreach ($filters as $filter => $value) {
             if (! method_exists($this, $filter)) {
                 continue;
@@ -42,8 +46,10 @@ abstract class FilterAbstract implements FilterInterface
                 continue;
             }
 
+
+
             if ($type == self::TYPE_BOOLEAN) {
-                $value = in_array(strtolower($value), ['1', 'on', 'true', ' yes']);
+                $value = in_array(strtolower($value), ['1', 'on', 'true', 'yes']);
             }
 
             settype($value, $type);
@@ -52,7 +58,7 @@ abstract class FilterAbstract implements FilterInterface
         }
 
         if ($this->request->filled($this->searchField)) {
-            $this->search(request()->input($this->searchField));
+            $this->search($this->request->input($this->searchField));
         }
 
         $this->order();
