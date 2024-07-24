@@ -11,6 +11,8 @@ interface FilterInterface
     const TYPE_INTEGER = 'integer';
 
     const TYPE_STRING = 'string';
+    const TYPE_FLOAT = 'float';
+    const TYPE_DOUBLE = 'double';
 
     const SEARCH = 'search';
 
