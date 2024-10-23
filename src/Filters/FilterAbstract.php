@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 abstract class FilterAbstract implements FilterInterface
 {
-    public function __construct(private Request $request) {
+    public function __construct(protected Request $request) {
 
     }
     protected Builder $builder;
@@ -92,8 +92,22 @@ abstract class FilterAbstract implements FilterInterface
         $searchables = $this->searchables;
         $this->builder->where(function (Builder $query) use ($phrase, $searchables) {
             foreach ($searchables as $searchable) {
-                $query->orWhere($searchable, 'like', "%{$phrase}%");
+				if (str_contains($searchable, '.')) {
+					$this->nestedSearch($query, $searchable, $phrase);
+				} else {
+					$query->orWhere($searchable, 'like', "%{$phrase}%");
+				}
             }
         });
     }
+	
+	private function nestedSearch(Builder $query, string $searchable, string $phrase)
+	{
+		$parts = explode('.', $searchable);
+		$property = array_pop($parts);
+		$relation = implode('.', $parts);
+		$query->orWhereHas($relation, function (Builder $nestedQuery) use ($property, $phrase) {
+			$nestedQuery->where($property, "%{$phrase}%");
+		});
+	}
 }
