@@ -122,7 +122,40 @@ class PostController extends Controller
 }
 ```
 
-If the query parameter `search` presents in the query parameter, Filoqunet will search in the all fields provided in the array.
+### Search Feature
+
+Filoquent supports searching across multiple columns, including relationships using dot notation.
+
+#### Example: Basic Search
+
+To search across specified fields, include the search query parameter in your request:
+
+```http
+GET /api/users?search=john
+```
+
+In your filter class, define the `searchables` array:
+
+```php
+protected array $searchables = ['name', 'email'];
+```
+
+#### Example: Nested Search with Dot Notation
+
+To search within relationships, use dot notation:
+
+```http
+GET /api/users?search=doe
+```
+
+Define nested searchable fields in your filter class:
+
+```php
+protected array $searchables = ['name', 'profile.bio', 'profile.location'];
+```
+
+This will search the `name` field on the `users` table and the `bio` and `location` fields on the related `profile` model.
+
 
 ## Contributing
 
