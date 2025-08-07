@@ -15,6 +15,7 @@ interface FilterInterface
     const TYPE_DOUBLE = 'double';
 
     const SEARCH = 'search';
+    const ORDER_BY = 'orderBy';
 
     public function apply(Builder $builder): void;
 
@@ -22,7 +23,7 @@ interface FilterInterface
 
     public function getFilterables(): array;
 
-    public function order();
+    public function applyOrdering();
 
     public function search($phrase): void;
 }

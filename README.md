@@ -156,6 +156,56 @@ protected array $searchables = ['name', 'profile.bio', 'profile.location'];
 
 This will search the `name` field on the `users` table and the `bio` and `location` fields on the related `profile` model.
 
+---
+
+### Ordering
+
+Filoquent allows ordering results by fields that **you explicitly allow**, and supports both **simple column sorting** and **custom method-based sorting**.
+
+#### Usage (Request Example)
+
+```
+GET /users?order_by=name:asc,created_at:desc
+```
+
+* You can provide multiple sort instructions separated by commas.
+* Each field can be sorted `asc` or `desc` (`asc` is default if not specified).
+
+#### Define Allowed Fields
+
+In your filter class, define:
+
+```php
+protected array $orderables = [
+    'name',
+    'created_at',
+    'custom_field' => 'sortByCustomField',
+];
+```
+
+Optionally define default sort if the user provides no sort params:
+
+```php
+protected array $orderBy = [
+    'name' => 'asc',
+];
+```
+
+#### Custom Sorting Methods
+
+If you need advanced logic, define a method and pass its name in `orderables`.
+
+```php
+protected array $orderables = [
+    'score' => 'sortByScore',
+];
+
+public function sortByScore(string $direction): void
+{
+    $this->builder->orderByRaw("some_custom_expression $direction");
+}
+```
+
 
 ## Contributing
 
