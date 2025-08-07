@@ -21,7 +21,7 @@ class {{ filter }} extends FilterAbstract
      * An array of fields that can be filtered.
      */
     protected array $filterables = [
-        // Add your filterable fields here
+        //
     ];
 
     /**
@@ -30,15 +30,28 @@ class {{ filter }} extends FilterAbstract
      * An array of fields that can be searched.
      */
     protected array $searchables = [
-        // Add your searchable fields here
+        //
     ];
 
     /**
      * @var array
      *
-     * An array of fields that can be used for ordering.
+     * An array of fields that will be used for ordering
+     * when no user-specified ordering is provided.
      */
     protected array $orderBy = [
-        // Add your orderable fields here
+        //
     ];
+
+    /**
+     * @var array
+     *
+     * An array of fields that can be sorted via request.
+     * You may define a custom method name
+     */
+    protected array $orderables = [
+        //
+        // 'custom_column' => 'sortByCustomColumn',
+    ];
+
 }
